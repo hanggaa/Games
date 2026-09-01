@@ -5,9 +5,11 @@ import { useSettingsStore } from '../../store/useSettingsStore';
 import { Modal } from '../common/Modal';
 import { StatsModal } from '../lobby/StatsModal';
 
+export type ExtendedView = 'lobby' | 'blackjack' | 'blackjack-pro' | 'videopoker' | 'balatro' | 'buckshot';
+
 interface HeaderProps {
-  activeView: 'lobby' | 'blackjack' | 'blackjack-pro' | 'videopoker' | 'balatro';
-  onNavigate: (view: 'lobby' | 'blackjack' | 'blackjack-pro' | 'videopoker' | 'balatro') => void;
+  activeView: ExtendedView;
+  onNavigate: (view: ExtendedView) => void;
 }
 
 export const Header: React.FC<HeaderProps> = ({ activeView, onNavigate }) => {
@@ -23,7 +25,7 @@ export const Header: React.FC<HeaderProps> = ({ activeView, onNavigate }) => {
           {activeView !== 'lobby' ? (
             <button
               onClick={() => onNavigate('lobby')}
-              className="flex items-center gap-1.5 text-xs font-medium text-[#EDEDED] bg-[#141414] hover:bg-[#1C1C1C] px-2.5 py-1.5 rounded-md border border-[#2A2A2A] transition active:scale-[0.98]"
+              className="flex items-center gap-1.5 text-xs font-medium text-[#EDEDED] bg-[#141414] hover:bg-[#1C1C1C] px-2.5 py-1.5 rounded-md border border-[#2A2A2A] transition active:scale-[0.98] cursor-pointer"
             >
               <ArrowLeft size={14} weight="bold" />
               <span>Lobby</span>
@@ -34,7 +36,7 @@ export const Header: React.FC<HeaderProps> = ({ activeView, onNavigate }) => {
                 H
               </span>
               <span className="font-serif-editorial font-bold text-base text-[#EDEDED] tracking-tight">
-                Hanggaa Games
+                Hanggaa Arcade
               </span>
             </div>
           )}
@@ -50,7 +52,7 @@ export const Header: React.FC<HeaderProps> = ({ activeView, onNavigate }) => {
             <button
               onClick={resetBankroll}
               title="Reset $500 chips"
-              className="text-[#FBBF24] hover:text-white transition active:scale-95 ml-1"
+              className="text-[#FBBF24] hover:text-white transition active:scale-95 ml-1 cursor-pointer"
             >
               <ArrowClockwise size={13} weight="bold" />
             </button>
@@ -61,14 +63,14 @@ export const Header: React.FC<HeaderProps> = ({ activeView, onNavigate }) => {
         <div className="flex items-center gap-1.5">
           <button
             onClick={() => setShowStats(true)}
-            className="p-1.5 text-[#EDEDED] bg-[#141414] hover:bg-[#1E1E1E] rounded-md border border-[#282828] transition active:scale-[0.98]"
+            className="p-1.5 text-[#EDEDED] bg-[#141414] hover:bg-[#1E1E1E] rounded-md border border-[#282828] transition active:scale-[0.98] cursor-pointer"
             title="Statistics"
           >
             <ChartBar size={16} weight="bold" />
           </button>
           <button
             onClick={toggleMute}
-            className="p-1.5 text-[#EDEDED] bg-[#141414] hover:bg-[#1E1E1E] rounded-md border border-[#282828] transition active:scale-[0.98]"
+            className="p-1.5 text-[#EDEDED] bg-[#141414] hover:bg-[#1E1E1E] rounded-md border border-[#282828] transition active:scale-[0.98] cursor-pointer"
             title={isMuted ? 'Unmute Audio' : 'Mute Audio'}
           >
             {isMuted ? <SpeakerSlash size={16} weight="bold" /> : <SpeakerHigh size={16} weight="bold" />}
