@@ -12,58 +12,53 @@
     height: 100%;
     margin: 0;
     padding: 0;
-    background-color: #020617;
-    color: #f8fafc;
+    background-color: #0A0A0A;
+    color: #EDEDED;
     overflow-x: hidden;
-    font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   }
 
-  h1, h2, h3, .font-serif-luxury {
-    font-family: 'Cinzel', Georgia, serif;
+  h1, h2, h3, .font-serif-editorial {
+    font-family: 'Newsreader', Georgia, serif;
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+  }
+
+  code, kbd, .font-mono-meta {
+    font-family: 'Geist Mono', 'SF Mono', monospace;
   }
 }
 
-/* Luxury Emerald Felt Texture */
-.felt-surface {
-  background: radial-gradient(ellipse at 50% 30%, #0d4a30 0%, #062316 65%, #02120a 100%);
-  box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.7);
+/* Minimalist Dark Canvas & Surface Tokens */
+.bg-canvas {
+  background-color: #0A0A0A;
 }
 
-/* Card 3D Flip Styles */
-.perspective-1000 {
-  perspective: 1000px;
+.bg-surface {
+  background-color: #141414;
 }
 
-.preserve-3d {
-  transform-style: preserve-3d;
-}
-
-.backface-hidden {
-  backface-visibility: hidden;
-}
-
-.rotate-y-180 {
-  transform: rotateY(180deg);
+.border-subtle {
+  border-color: #242424;
 }
 
 /* Tactile Active States */
 .active-press {
-  transition: transform 0.08s ease, filter 0.08s ease;
+  transition: transform 0.08s ease;
 }
 .active-press:active {
-  transform: scale(0.95);
-  filter: brightness(0.9);
+  transform: scale(0.98);
 }
 
-/* Custom Scrollbar */
+/* Subtle Dark Scrollbar */
 ::-webkit-scrollbar {
   width: 4px;
   height: 4px;
 }
 ::-webkit-scrollbar-track {
-  background: rgba(0, 0, 0, 0.2);
+  background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(212, 175, 55, 0.3);
+  background: #2A2A2A;
   border-radius: 4px;
 }

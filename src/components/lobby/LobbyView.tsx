@@ -1,170 +1,179 @@
 import React from 'react';
 import { motion } from 'motion/react';
-import { Play, Sparkle, Brain, Cards, Trophy } from '@phosphor-icons/react';
+import { Play, Sparkle, ArrowRight } from '@phosphor-icons/react';
 import { useBankrollStore, GameKey } from '../../store/useBankrollStore';
 import { Button } from '../common/Button';
 
+type ExtendedGameKey = GameKey | 'balatro';
+
 interface LobbyViewProps {
-  onSelectGame: (game: GameKey) => void;
+  onSelectGame: (game: ExtendedGameKey) => void;
 }
 
 export const LobbyView: React.FC<LobbyViewProps> = ({ onSelectGame }) => {
   const { lastActiveGame } = useBankrollStore();
 
   return (
-    <div className="w-full max-w-4xl mx-auto px-4 py-6 sm:py-8 space-y-6">
-      {/* Hero Header */}
-      <div className="text-center space-y-2">
-        <motion.div
-          initial={{ scale: 0.9, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-950/80 border border-emerald-500/30 text-emerald-400 text-xs font-semibold tracking-wider"
-        >
-          <Sparkle size={14} weight="fill" />
-          <span>SOLO CARD & CASINO SUITE</span>
-        </motion.div>
-        <h1 className="text-3xl sm:text-4xl md:text-5xl font-serif-luxury font-bold tracking-tight text-slate-100">
-          HANGGAA <span className="text-amber-400">ARCADE</span>
+    <div className="w-full max-w-4xl mx-auto px-4 py-8 sm:py-12 space-y-8">
+      {/* Header Section */}
+      <div className="space-y-2">
+        <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#122416] text-[#4ADE80] border border-[#1E3A24] text-[11px] font-mono-meta font-medium">
+          <Sparkle size={12} weight="fill" />
+          <span>ZERO-FRICTION CARD ARCADE</span>
+        </div>
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-serif-editorial font-bold text-[#EDEDED] tracking-tight">
+          Hanggaa Card Hub
         </h1>
-        <p className="text-xs sm:text-sm text-slate-400 max-w-md mx-auto">
-          Ad-free, one-handed portrait card games. Play for relaxation, manage virtual bankrolls, and sharpen card counting strategy.
+        <p className="text-xs sm:text-sm text-[#8E8E93] max-w-xl leading-relaxed">
+          A minimalist single-player card workspace designed for focused portrait play. Real 3-deck continuous shoe Blackjack, Texas Hold'em against AI bots, and Roguelike Poker Deckbuilding.
         </p>
       </div>
 
-      {/* Quick Resume Button */}
+      {/* Quick Resume Hero Bar */}
       {lastActiveGame && (
         <motion.div
-          initial={{ y: 10, opacity: 0 }}
+          initial={{ y: 8, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
-          className="bg-gradient-to-r from-emerald-950/90 via-slate-900/90 to-emerald-950/90 border border-emerald-500/40 rounded-2xl p-4 flex items-center justify-between shadow-lg"
+          className="bg-[#141414] border border-[#262626] rounded-lg p-3.5 flex items-center justify-between shadow-sm"
         >
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center text-emerald-400">
-              <Play size={20} weight="fill" />
+            <div className="w-8 h-8 rounded bg-[#1C1C1C] border border-[#2D2D2D] flex items-center justify-center text-[#EDEDED]">
+              <Play size={16} weight="fill" />
             </div>
             <div>
-              <div className="text-[11px] text-emerald-400 font-semibold uppercase tracking-wider">Quick Resume</div>
-              <div className="font-serif-luxury font-bold text-slate-100 text-sm sm:text-base capitalize">
-                {lastActiveGame === 'blackjack-pro' ? 'Blackjack Pro Trainer' : lastActiveGame === 'videopoker' ? 'Video Poker 9/6' : 'Blackjack Classic'}
+              <div className="text-[10px] text-[#8E8E93] font-semibold uppercase font-mono-meta">Resume Session</div>
+              <div className="font-serif-editorial font-bold text-[#EDEDED] text-sm capitalize">
+                {lastActiveGame === 'blackjack-pro' ? 'Blackjack 3-Deck Trainer' : lastActiveGame === 'videopoker' ? "Texas Hold'em vs Bots" : 'Blackjack Classic'}
               </div>
             </div>
           </div>
-          <Button variant="gold" size="sm" onClick={() => onSelectGame(lastActiveGame)}>
-            Resume Game
+          <Button variant="primary" size="sm" onClick={() => onSelectGame(lastActiveGame)}>
+            Resume
           </Button>
         </motion.div>
       )}
 
-      {/* Game Cards Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        {/* 1. Blackjack Classic */}
+      {/* Bento Grid Layout (Dark Minimalist) */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {/* 1. Balatro-lite Roguelike Deckbuilder */}
         <motion.div
-          whileHover={{ y: -4 }}
-          className="bg-slate-900/90 border border-slate-800 hover:border-emerald-500/50 rounded-2xl p-5 flex flex-col justify-between shadow-xl transition relative overflow-hidden group"
+          whileHover={{ y: -2 }}
+          className="bg-[#141414] border border-[#242424] hover:border-[#383838] rounded-xl p-5 flex flex-col justify-between space-y-4 transition-all"
         >
-          <div className="absolute top-0 right-0 w-24 h-24 bg-emerald-500/5 rounded-full blur-2xl group-hover:bg-emerald-500/10 transition" />
-          <div className="space-y-3">
+          <div className="space-y-2.5">
             <div className="flex items-center justify-between">
-              <div className="w-10 h-10 rounded-xl bg-emerald-950 border border-emerald-500/40 flex items-center justify-center text-emerald-400">
-                <Cards size={22} weight="bold" />
-              </div>
-              <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-slate-800 text-slate-300 border border-slate-700">
-                6-Deck Vegas
+              <span className="text-[10px] uppercase font-mono-meta font-bold bg-[#0E2338] text-[#60A5FA] border border-[#173A5E] px-2 py-0.5 rounded-full">
+                ROGUELIKE DECKBUILDER
               </span>
+              <span className="text-[11px] font-mono-meta text-[#8E8E93]">8 Antes</span>
             </div>
             <div>
-              <h3 className="text-lg font-serif-luxury font-bold text-slate-100">Blackjack Classic</h3>
-              <p className="text-xs text-slate-400 mt-1 leading-relaxed">
-                Authentic Vegas rules vs Dealer AI. Dealer hits soft 17, 3:2 Blackjack payout, Split & Double Down.
+              <h3 className="text-xl font-serif-editorial font-bold text-[#EDEDED]">Balatro-lite</h3>
+              <p className="text-xs text-[#8E8E93] mt-1 leading-relaxed">
+                Play poker hands to beat escalating Blinds. Collect and equip Jokers to multiply chips and craft synergistic deck strategies.
               </p>
             </div>
           </div>
           <Button
             variant="primary"
-            className="w-full mt-4"
-            onClick={() => onSelectGame('blackjack')}
+            size="md"
+            className="w-full flex items-center justify-between"
+            onClick={() => onSelectGame('balatro')}
           >
-            Play Classic
+            <span>Play Roguelike Run</span>
+            <ArrowRight size={14} weight="bold" />
           </Button>
         </motion.div>
 
-        {/* 2. Blackjack Pro (Trainer) */}
+        {/* 2. Blackjack Card Counting Pro (3-Deck Shoe) */}
         <motion.div
-          whileHover={{ y: -4 }}
-          className="bg-slate-900/90 border border-amber-400/40 hover:border-amber-400 rounded-2xl p-5 flex flex-col justify-between shadow-xl transition relative overflow-hidden group ring-1 ring-amber-400/20"
+          whileHover={{ y: -2 }}
+          className="bg-[#141414] border border-[#242424] hover:border-[#383838] rounded-xl p-5 flex flex-col justify-between space-y-4 transition-all"
         >
-          <div className="absolute top-0 right-0 w-24 h-24 bg-amber-500/10 rounded-full blur-2xl group-hover:bg-amber-500/20 transition" />
-          <div className="space-y-3">
+          <div className="space-y-2.5">
             <div className="flex items-center justify-between">
-              <div className="w-10 h-10 rounded-xl bg-amber-950 border border-amber-400/40 flex items-center justify-center text-amber-400">
-                <Brain size={22} weight="bold" />
-              </div>
-              <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-300 border border-amber-400/30">
-                PRO TRAINER
+              <span className="text-[10px] uppercase font-mono-meta font-bold bg-[#2A2210] text-[#FBBF24] border border-[#4A3B18] px-2 py-0.5 rounded-full">
+                3-DECK CONTINUOUS SHOE
               </span>
+              <span className="text-[11px] font-mono-meta text-[#8E8E93]">Hi-Lo Trainer</span>
             </div>
             <div>
-              <h3 className="text-lg font-serif-luxury font-bold text-amber-300">Blackjack Pro Trainer</h3>
-              <p className="text-xs text-slate-400 mt-1 leading-relaxed">
-                Sharpen your edge with real-time **Hi-Lo Running & True Count HUD** plus instant Basic Strategy decision feedback.
-              </p>
-            </div>
-          </div>
-          <Button
-            variant="gold"
-            className="w-full mt-4"
-            onClick={() => onSelectGame('blackjack-pro')}
-          >
-            Train Counting
-          </Button>
-        </motion.div>
-
-        {/* 3. Video Poker */}
-        <motion.div
-          whileHover={{ y: -4 }}
-          className="bg-slate-900/90 border border-slate-800 hover:border-purple-500/50 rounded-2xl p-5 flex flex-col justify-between shadow-xl transition relative overflow-hidden group"
-        >
-          <div className="absolute top-0 right-0 w-24 h-24 bg-purple-500/5 rounded-full blur-2xl group-hover:bg-purple-500/10 transition" />
-          <div className="space-y-3">
-            <div className="flex items-center justify-between">
-              <div className="w-10 h-10 rounded-xl bg-purple-950 border border-purple-500/40 flex items-center justify-center text-purple-400">
-                <Trophy size={22} weight="bold" />
-              </div>
-              <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-slate-800 text-slate-300 border border-slate-700">
-                9/6 Full Pay
-              </span>
-            </div>
-            <div>
-              <h3 className="text-lg font-serif-luxury font-bold text-slate-100">Video Poker (Jacks+)</h3>
-              <p className="text-xs text-slate-400 mt-1 leading-relaxed">
-                Classic 5-card draw with 800x Royal Flush jackpot. Hold winning pairs, draw replacements, and maximize payouts.
+              <h3 className="text-xl font-serif-editorial font-bold text-[#EDEDED]">Blackjack Pro Trainer</h3>
+              <p className="text-xs text-[#8E8E93] mt-1 leading-relaxed">
+                Authentic 156-card shoe that persists across rounds. Live Running Count (RC), True Count (TC), and Basic Strategy Advisor.
               </p>
             </div>
           </div>
           <Button
             variant="secondary"
-            className="w-full mt-4 hover:border-purple-400/60"
-            onClick={() => onSelectGame('videopoker')}
+            size="md"
+            className="w-full flex items-center justify-between"
+            onClick={() => onSelectGame('blackjack-pro')}
           >
-            Play Video Poker
+            <span>Train 3-Deck Shoe</span>
+            <ArrowRight size={14} weight="bold" />
           </Button>
         </motion.div>
-      </div>
 
-      {/* Future Expansion Teaser (Balatro-lite) */}
-      <div className="bg-slate-950/60 border border-slate-800/80 rounded-2xl p-4 flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
-        <div className="flex items-center gap-3">
-          <div className="w-8 h-8 rounded-lg bg-rose-950/60 border border-rose-500/30 flex items-center justify-center text-rose-400 font-bold text-xs">
-            🃏
+        {/* 3. Texas Hold'em vs AI Bots */}
+        <motion.div
+          whileHover={{ y: -2 }}
+          className="bg-[#141414] border border-[#242424] hover:border-[#383838] rounded-xl p-5 flex flex-col justify-between space-y-4 transition-all"
+        >
+          <div className="space-y-2.5">
+            <div className="flex items-center justify-between">
+              <span className="text-[10px] uppercase font-mono-meta font-bold bg-[#2D1214] text-[#F87171] border border-[#4D1C20] px-2 py-0.5 rounded-full">
+                HEADS-UP TABLE
+              </span>
+              <span className="text-[11px] font-mono-meta text-[#8E8E93]">Elena & Viktor</span>
+            </div>
+            <div>
+              <h3 className="text-xl font-serif-editorial font-bold text-[#EDEDED]">Texas Hold'em Poker</h3>
+              <p className="text-xs text-[#8E8E93] mt-1 leading-relaxed">
+                Solo poker against distinct bot personalities. Preflop, Flop, Turn, River, blinds rotation, and 7-card showdown.
+              </p>
+            </div>
           </div>
-          <div>
-            <div className="font-semibold text-xs text-slate-200">Roadmap: Balatro-lite (Poker Roguelike)</div>
-            <div className="text-[11px] text-slate-400">Joker card modifiers, score multipliers, and escalating blinds coming in v2.0!</div>
+          <Button
+            variant="secondary"
+            size="md"
+            className="w-full flex items-center justify-between"
+            onClick={() => onSelectGame('videopoker')}
+          >
+            <span>Play Texas Hold'em</span>
+            <ArrowRight size={14} weight="bold" />
+          </Button>
+        </motion.div>
+
+        {/* 4. Blackjack Classic */}
+        <motion.div
+          whileHover={{ y: -2 }}
+          className="bg-[#141414] border border-[#242424] hover:border-[#383838] rounded-xl p-5 flex flex-col justify-between space-y-4 transition-all"
+        >
+          <div className="space-y-2.5">
+            <div className="flex items-center justify-between">
+              <span className="text-[10px] uppercase font-mono-meta font-bold bg-[#122416] text-[#4ADE80] border border-[#1E3A24] px-2 py-0.5 rounded-full">
+                STANDARD VEGAS
+              </span>
+              <span className="text-[11px] font-mono-meta text-[#8E8E93]">Casual Play</span>
+            </div>
+            <div>
+              <h3 className="text-xl font-serif-editorial font-bold text-[#EDEDED]">Blackjack Classic</h3>
+              <p className="text-xs text-[#8E8E93] mt-1 leading-relaxed">
+                Vegas rules dealer AI with double down and pair splitting. Pure, peaceful card playing without trainer overlays.
+              </p>
+            </div>
           </div>
-        </div>
-        <span className="text-[10px] uppercase font-bold text-rose-400 bg-rose-950/40 border border-rose-800/40 px-2.5 py-1 rounded-full">
-          In Development
-        </span>
+          <Button
+            variant="secondary"
+            size="md"
+            className="w-full flex items-center justify-between"
+            onClick={() => onSelectGame('blackjack')}
+          >
+            <span>Play Casual Blackjack</span>
+            <ArrowRight size={14} weight="bold" />
+          </Button>
+        </motion.div>
       </div>
     </div>
   );

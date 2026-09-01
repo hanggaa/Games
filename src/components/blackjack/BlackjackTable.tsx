@@ -53,27 +53,17 @@ export const BlackjackTable: React.FC<BlackjackTableProps> = ({ isPro = false })
   const canDoubleActive = activeHand && canDouble(activeHand);
 
   return (
-    <div className="w-full flex-1 flex flex-col justify-between felt-surface p-3 sm:p-5 relative overflow-hidden min-h-[calc(100dvh-57px)]">
-      {/* Decorative Casino Felt Watermark */}
-      <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-5">
-        <span className="font-serif-luxury text-8xl sm:text-9xl font-bold tracking-widest text-amber-200">
-          21
-        </span>
-      </div>
-
-      {/* TOP HEADER: Physical 3-Deck Shoe Status & Dealer Area */}
-      <div className="w-full max-w-lg mx-auto flex items-center justify-between z-10 px-1">
-        {/* Physical 3-Deck Shoe Indicator */}
-        <div className="flex items-center gap-1.5 bg-slate-950/80 border border-slate-800 px-2.5 py-1 rounded-xl shadow text-xs">
-          <Stack size={16} className="text-amber-400" />
-          <div className="flex flex-col text-[10px] leading-tight">
-            <span className="text-slate-400 font-semibold">3-Deck Shoe</span>
-            <span className="font-mono font-bold text-amber-300">
-              {shoe.length} / 156 cards
-            </span>
-          </div>
+    <div className="w-full flex-1 flex flex-col justify-between bg-[#0A0A0A] p-3 sm:p-5 min-h-[calc(100dvh-57px)] max-w-4xl mx-auto space-y-3">
+      {/* TOP HEADER: Shoe Status & Dealer Score */}
+      <div className="w-full flex items-center justify-between z-10 px-1">
+        {/* 3-Deck Continuous Shoe Status */}
+        <div className="flex items-center gap-2 bg-[#141414] border border-[#242424] px-2.5 py-1 rounded-md text-xs font-mono-meta">
+          <Stack size={14} weight="bold" className="text-[#EDEDED]" />
+          <span className="text-[#EDEDED]">
+            {shoe.length} / 156 cards
+          </span>
           {cutCardReached && (
-            <span className="bg-rose-950 text-rose-300 font-bold text-[8px] px-1 py-0.5 rounded border border-rose-800">
+            <span className="bg-[#2A1416] text-[#F87171] border border-[#4D2024] text-[9px] font-bold px-1.5 py-0.2 rounded">
               CUT CARD
             </span>
           )}
@@ -81,18 +71,18 @@ export const BlackjackTable: React.FC<BlackjackTableProps> = ({ isPro = false })
             <button
               onClick={reshuffleShoe}
               title="Reshuffle 3-Deck Shoe"
-              className="text-slate-400 hover:text-amber-300 transition active:scale-95 ml-1 p-0.5"
+              className="text-[#8E8E93] hover:text-[#EDEDED] transition active:scale-95 ml-1 cursor-pointer"
             >
-              <ArrowsClockwise size={13} />
+              <ArrowsClockwise size={12} weight="bold" />
             </button>
           )}
         </div>
 
         {/* Dealer Score Badge */}
-        <div className="flex items-center gap-2 bg-slate-950/80 border border-slate-800/80 px-3 py-1 rounded-full text-xs text-slate-300 shadow">
-          <span className="font-serif-luxury font-bold text-amber-400">DEALER</span>
+        <div className="flex items-center gap-2 bg-[#141414] border border-[#242424] px-3 py-1 rounded-md text-xs">
+          <span className="font-serif-editorial font-bold text-[#EDEDED]">DEALER</span>
           {dealerCards.length > 0 && dealerCards.some((c) => c.faceUp) && (
-            <span className="font-mono font-bold bg-slate-900 px-2 py-0.5 rounded text-amber-300">
+            <span className="font-mono-meta font-bold text-[#EDEDED] bg-[#1C1C1C] px-2 py-0.5 rounded border border-[#2A2A2A]">
               {dealerCards.every((c) => c.faceUp)
                 ? dealerScore.isBlackjack
                   ? 'BLACKJACK'
@@ -107,15 +97,15 @@ export const BlackjackTable: React.FC<BlackjackTableProps> = ({ isPro = false })
         </div>
       </div>
 
-      {/* DEALER CARDS */}
-      <div className="w-full max-w-lg mx-auto flex items-center justify-center gap-1.5 sm:gap-2.5 min-h-[105px] sm:min-h-[135px] py-1 z-10">
+      {/* DEALER CARDS CONTAINER */}
+      <div className="w-full flex items-center justify-center gap-2 min-h-[95px] sm:min-h-[120px] py-1 z-10">
         <AnimatePresence>
           {dealerCards.map((card) => (
             <CardView key={card.id} card={card} />
           ))}
         </AnimatePresence>
         {dealerCards.length === 0 && (
-          <div className="w-16 h-24 sm:w-20 sm:h-30 rounded-xl border-2 border-dashed border-emerald-500/20 flex items-center justify-center text-emerald-500/30 text-xs font-serif-luxury">
+          <div className="w-15 h-22 sm:w-18 sm:h-26 rounded-lg border border-dashed border-[#282828] flex items-center justify-center text-[#555555] text-xs font-mono-meta">
             Dealer
           </div>
         )}
@@ -123,20 +113,18 @@ export const BlackjackTable: React.FC<BlackjackTableProps> = ({ isPro = false })
 
       {/* MIDDLE SECTION: Round Outcome Banner & Trainer HUD */}
       <div className="w-full max-w-md mx-auto z-10 space-y-2 py-1">
-        {/* Round Outcome Banner */}
         {roundMessage && (
           <motion.div
-            initial={{ scale: 0.9, opacity: 0 }}
+            initial={{ scale: 0.98, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
-            className="text-center py-1.5 px-4 rounded-xl bg-slate-950/90 border border-amber-400/50 shadow-xl"
+            className="text-center py-1.5 px-3 rounded-md bg-[#141414] border border-[#333333] shadow-sm"
           >
-            <span className="font-serif-luxury font-bold text-xs sm:text-sm text-amber-300">
+            <span className="font-serif-editorial font-bold text-xs sm:text-sm text-[#EDEDED]">
               {roundMessage}
             </span>
           </motion.div>
         )}
 
-        {/* Trainer HUD (in Pro Mode) */}
         {isPro && (
           <TrainerHud
             counting={counting}
@@ -147,32 +135,32 @@ export const BlackjackTable: React.FC<BlackjackTableProps> = ({ isPro = false })
       </div>
 
       {/* BOTTOM SECTION: Player Hands */}
-      <div className="w-full max-w-lg mx-auto flex flex-col items-center z-10 space-y-2">
-        <div className="flex flex-wrap items-center justify-center gap-4 w-full">
+      <div className="w-full flex flex-col items-center z-10 space-y-2">
+        <div className="flex flex-wrap items-center justify-center gap-3 w-full">
           {playerHands.map((hand, idx) => {
             const isActive = idx === activeHandIndex && phase === 'player-turn';
             return (
               <div
                 key={hand.id}
-                className={`flex flex-col items-center p-2 rounded-2xl transition-all ${
+                className={`flex flex-col items-center p-2 rounded-lg transition-all ${
                   isActive
-                    ? 'bg-slate-950/80 ring-2 ring-amber-400 ring-offset-2 ring-offset-emerald-950 shadow-2xl'
-                    : 'bg-slate-950/40 border border-slate-800/60'
+                    ? 'bg-[#141414] border-2 border-white shadow-sm'
+                    : 'bg-[#141414] border border-[#242424]'
                 }`}
               >
                 {/* Score & Bet Pill */}
                 <div className="flex items-center gap-2 mb-1.5 text-xs">
-                  <span className="font-serif-luxury font-bold text-slate-200">
+                  <span className="font-serif-editorial font-bold text-[#EDEDED]">
                     {playerHands.length > 1 ? `Hand ${idx + 1}` : 'Player'}
                   </span>
-                  <span className="font-mono font-bold bg-slate-900 text-amber-300 px-2 py-0.5 rounded border border-slate-700">
+                  <span className="font-mono-meta font-bold bg-[#1C1C1C] text-[#EDEDED] px-2 py-0.5 rounded border border-[#2A2A2A]">
                     {hand.score.isBlackjack
-                      ? 'BLACKJACK 👑'
+                      ? 'BLACKJACK'
                       : hand.score.isBust
                       ? `BUST (${hand.score.total})`
                       : hand.score.total}
                   </span>
-                  <span className="text-[11px] text-amber-400 font-mono font-semibold">
+                  <span className="text-[11px] text-[#8E8E93] font-mono-meta font-semibold">
                     ${hand.bet}
                   </span>
                 </div>
@@ -190,21 +178,21 @@ export const BlackjackTable: React.FC<BlackjackTableProps> = ({ isPro = false })
           })}
 
           {playerHands.length === 0 && (
-            <div className="w-16 h-24 sm:w-20 sm:h-30 rounded-xl border-2 border-dashed border-emerald-500/20 flex items-center justify-center text-emerald-500/30 text-xs font-serif-luxury">
+            <div className="w-15 h-22 sm:w-18 sm:h-26 rounded-lg border border-dashed border-[#282828] flex items-center justify-center text-[#555555] text-xs font-mono-meta">
               Player
             </div>
           )}
         </div>
       </div>
 
-      {/* FIXED BOTTOM ACTION CONTROLS (One-Handed Mobile Thumb Zone) */}
-      <div className="w-full max-w-lg mx-auto bg-slate-950/90 border border-slate-800 rounded-2xl p-3 shadow-2xl z-20 mt-2">
+      {/* FIXED BOTTOM ACTION CONTROLS */}
+      <div className="w-full bg-[#141414] border border-[#242424] rounded-xl p-3 z-20">
         {phase === 'betting' || phase === 'round-over' ? (
-          <div className="space-y-3">
+          <div className="space-y-2.5">
             {/* Chip Selection Row */}
             <div className="flex items-center justify-between px-1">
-              <span className="text-xs text-slate-400 font-medium">Select Bet:</span>
-              <div className="flex items-center gap-2 sm:gap-3">
+              <span className="text-xs text-[#8E8E93] font-mono-meta uppercase font-semibold">Bet Amount:</span>
+              <div className="flex items-center gap-1.5 sm:gap-2">
                 {[5, 25, 50, 100, 500].map((amount) => (
                   <ChipBadge
                     key={amount}
@@ -221,7 +209,7 @@ export const BlackjackTable: React.FC<BlackjackTableProps> = ({ isPro = false })
             <div className="flex items-center gap-2">
               {phase === 'round-over' ? (
                 <>
-                  <Button variant="gold" size="lg" className="flex-1" onClick={nextRound}>
+                  <Button variant="primary" size="lg" className="flex-1" onClick={nextRound}>
                     New Round
                   </Button>
                   <Button variant="secondary" size="lg" onClick={dealHand}>
@@ -229,14 +217,13 @@ export const BlackjackTable: React.FC<BlackjackTableProps> = ({ isPro = false })
                   </Button>
                 </>
               ) : (
-                <Button variant="gold" size="lg" className="w-full" onClick={dealHand}>
+                <Button variant="primary" size="lg" className="w-full" onClick={dealHand}>
                   DEAL (${currentBet})
                 </Button>
               )}
             </div>
           </div>
         ) : (
-          /* Player Decision Action Sheet */
           <div className="grid grid-cols-4 gap-2">
             <Button
               variant="outline"

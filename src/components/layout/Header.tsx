@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
-import { SpeakerHigh, SpeakerSlash, ChartBar, ArrowLeft, ArrowsClockwise } from '@phosphor-icons/react';
+import { SpeakerHigh, SpeakerSlash, ChartBar, ArrowLeft, ArrowClockwise } from '@phosphor-icons/react';
 import { useBankrollStore } from '../../store/useBankrollStore';
 import { useSettingsStore } from '../../store/useSettingsStore';
 import { Modal } from '../common/Modal';
 import { StatsModal } from '../lobby/StatsModal';
 
 interface HeaderProps {
-  activeView: 'lobby' | 'blackjack' | 'blackjack-pro' | 'videopoker';
-  onNavigate: (view: 'lobby' | 'blackjack' | 'blackjack-pro' | 'videopoker') => void;
+  activeView: 'lobby' | 'blackjack' | 'blackjack-pro' | 'videopoker' | 'balatro';
+  onNavigate: (view: 'lobby' | 'blackjack' | 'blackjack-pro' | 'videopoker' | 'balatro') => void;
 }
 
 export const Header: React.FC<HeaderProps> = ({ activeView, onNavigate }) => {
@@ -17,69 +17,67 @@ export const Header: React.FC<HeaderProps> = ({ activeView, onNavigate }) => {
 
   return (
     <>
-      <header className="sticky top-0 z-40 w-full bg-slate-950/80 backdrop-blur-md border-b border-slate-800/80 px-4 py-2.5 flex items-center justify-between">
-        {/* Left side: Back to Lobby or Logo */}
-        <div className="flex items-center gap-2">
+      <header className="sticky top-0 z-40 w-full bg-[#0A0A0A]/90 backdrop-blur-md border-b border-[#222222] px-4 py-3 flex items-center justify-between">
+        {/* Left: Back / Title */}
+        <div className="flex items-center gap-3">
           {activeView !== 'lobby' ? (
             <button
               onClick={() => onNavigate('lobby')}
-              className="flex items-center gap-1.5 text-xs font-semibold text-slate-300 hover:text-amber-300 bg-slate-900/80 hover:bg-slate-800 px-2.5 py-1.5 rounded-lg border border-slate-800 transition active:scale-95"
+              className="flex items-center gap-1.5 text-xs font-medium text-[#EDEDED] bg-[#141414] hover:bg-[#1C1C1C] px-2.5 py-1.5 rounded-md border border-[#2A2A2A] transition active:scale-[0.98]"
             >
-              <ArrowLeft size={16} />
+              <ArrowLeft size={14} weight="bold" />
               <span>Lobby</span>
             </button>
           ) : (
             <div className="flex items-center gap-2">
-              <div className="w-7 h-7 rounded-lg bg-emerald-900/60 border border-emerald-500/40 flex items-center justify-center text-amber-400 font-serif-luxury font-bold text-xs">
-                ♠
-              </div>
-              <span className="font-serif-luxury font-bold text-sm sm:text-base tracking-wider text-slate-100">
-                HANGGAA
+              <span className="w-5 h-5 rounded bg-[#EDEDED] text-[#0A0A0A] flex items-center justify-center font-mono-meta font-bold text-xs">
+                H
+              </span>
+              <span className="font-serif-editorial font-bold text-base text-[#EDEDED] tracking-tight">
+                Hanggaa Games
               </span>
             </div>
           )}
         </div>
 
-        {/* Center: Bankroll Pill */}
-        <div className="flex items-center gap-2 bg-slate-900/90 border border-amber-400/30 px-3 py-1 rounded-full shadow-inner">
-          <span className="text-amber-400 text-xs">🪙</span>
-          <span className="font-mono font-bold text-sm sm:text-base text-amber-300">
+        {/* Center: Bankroll Counter */}
+        <div className="flex items-center gap-2 bg-[#141414] border border-[#282828] px-3 py-1 rounded-md text-xs font-mono-meta">
+          <span className="text-[#8E8E93]">BANKROLL</span>
+          <span className="font-bold text-[#EDEDED]">
             ${chips.toLocaleString()}
           </span>
           {chips <= 0 && (
             <button
               onClick={resetBankroll}
-              title="Reload $500 chips"
-              className="text-emerald-400 hover:text-emerald-300 transition active:scale-95 ml-1"
+              title="Reset $500 chips"
+              className="text-[#FBBF24] hover:text-white transition active:scale-95 ml-1"
             >
-              <ArrowsClockwise size={14} />
+              <ArrowClockwise size={13} weight="bold" />
             </button>
           )}
         </div>
 
         {/* Right: Sound & Stats */}
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1.5">
           <button
             onClick={() => setShowStats(true)}
-            className="p-2 text-slate-300 hover:text-amber-300 bg-slate-900 hover:bg-slate-800 rounded-lg border border-slate-800 transition active:scale-95"
+            className="p-1.5 text-[#EDEDED] bg-[#141414] hover:bg-[#1E1E1E] rounded-md border border-[#282828] transition active:scale-[0.98]"
             title="Statistics"
           >
-            <ChartBar size={18} />
+            <ChartBar size={16} weight="bold" />
           </button>
           <button
             onClick={toggleMute}
-            className={`p-2 rounded-lg border border-slate-800 transition active:scale-95 ${
-              isMuted ? 'text-rose-400 bg-rose-950/40' : 'text-slate-300 hover:text-amber-300 bg-slate-900 hover:bg-slate-800'
-            }`}
+            className="p-1.5 text-[#EDEDED] bg-[#141414] hover:bg-[#1E1E1E] rounded-md border border-[#282828] transition active:scale-[0.98]"
             title={isMuted ? 'Unmute Audio' : 'Mute Audio'}
           >
-            {isMuted ? <SpeakerSlash size={18} /> : <SpeakerHigh size={18} />}
+            {isMuted ? <SpeakerSlash size={16} weight="bold" /> : <SpeakerHigh size={16} weight="bold" />}
           </button>
         </div>
       </header>
 
       {/* Stats Modal */}
-      <Modal isOpen={showStats} onClose={() => setShowStats(false)} title="Personal Arcade Statistics">
+      <Modal isOpen={showStats} onClose={() => setShowStats(false)} title="Session Performance">
         <StatsModal />
       </Modal>
     </>

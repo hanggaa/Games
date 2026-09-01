@@ -2,24 +2,24 @@ import React, { useState } from 'react';
 import { Header } from './components/layout/Header';
 import { LobbyView } from './components/lobby/LobbyView';
 import { BlackjackTable } from './components/blackjack/BlackjackTable';
-import { PokerTable } from './components/videopoker/PokerTable';
+import { PokerTable } from './components/poker/PokerTable';
+import { BalatroTable } from './components/balatro/BalatroTable';
 
-type ActiveView = 'lobby' | 'blackjack' | 'blackjack-pro' | 'videopoker';
+type ActiveView = 'lobby' | 'blackjack' | 'blackjack-pro' | 'videopoker' | 'balatro';
 
 export const App: React.FC = () => {
   const [activeView, setActiveView] = useState<ActiveView>('lobby');
 
   return (
-    <div className="flex flex-col min-h-[100dvh] bg-slate-950 text-slate-100 antialiased select-none">
-      {/* Sticky Top Header */}
+    <div className="flex flex-col min-h-[100dvh] bg-[#0A0A0A] text-[#EDEDED] antialiased select-none">
       <Header activeView={activeView} onNavigate={setActiveView} />
 
-      {/* Main Content Area */}
       <main className="flex-1 flex flex-col">
         {activeView === 'lobby' && <LobbyView onSelectGame={setActiveView} />}
         {activeView === 'blackjack' && <BlackjackTable isPro={false} />}
         {activeView === 'blackjack-pro' && <BlackjackTable isPro={true} />}
         {activeView === 'videopoker' && <PokerTable />}
+        {activeView === 'balatro' && <BalatroTable />}
       </main>
     </div>
   );

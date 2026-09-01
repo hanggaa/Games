@@ -18,19 +18,19 @@ export const TrainerHud: React.FC<TrainerHudProps> = ({
   const { showTrainerHud, toggleTrainerHud } = useSettingsStore();
 
   return (
-    <div className="w-full bg-slate-950/70 border border-amber-400/30 rounded-xl p-2.5 shadow-lg backdrop-blur-sm space-y-2">
+    <div className="w-full bg-[#141414] border border-[#242424] rounded-lg p-2.5 space-y-2">
       {/* Top Header & Toggle */}
       <div className="flex items-center justify-between text-xs">
-        <div className="flex items-center gap-1.5 font-bold text-amber-300">
-          <Brain size={16} weight="fill" />
-          <span className="font-serif-luxury tracking-wide">Card Counting & Strategy Trainer</span>
+        <div className="flex items-center gap-1.5 font-bold text-[#EDEDED] font-mono-meta text-[11px] uppercase">
+          <Brain size={15} weight="bold" className="text-[#FBBF24]" />
+          <span>Card Counting Metrics</span>
         </div>
         <button
           onClick={toggleTrainerHud}
-          className="text-slate-400 hover:text-slate-200 flex items-center gap-1 text-[11px] bg-slate-900/80 px-2 py-0.5 rounded border border-slate-800 transition"
+          className="text-[#8E8E93] hover:text-[#EDEDED] flex items-center gap-1 text-[10px] font-mono-meta bg-[#181818] px-2 py-0.5 rounded border border-[#2A2A2A] transition cursor-pointer"
         >
-          {showTrainerHud ? <EyeSlash size={14} /> : <Eye size={14} />}
-          <span>{showTrainerHud ? 'Hide Stats' : 'Show Stats'}</span>
+          {showTrainerHud ? <EyeSlash size={12} weight="bold" /> : <Eye size={12} weight="bold" />}
+          <span>{showTrainerHud ? 'Hide' : 'Show'}</span>
         </button>
       </div>
 
@@ -43,33 +43,33 @@ export const TrainerHud: React.FC<TrainerHudProps> = ({
         >
           {/* Counting Metric Badges */}
           <div className="grid grid-cols-3 gap-1.5 text-center">
-            <div className="bg-slate-900/90 p-1.5 rounded-lg border border-slate-800">
-              <div className="text-[10px] text-slate-400 font-semibold uppercase">Running Count</div>
-              <div className={`text-base font-bold font-mono ${counting.runningCount > 0 ? 'text-emerald-400' : counting.runningCount < 0 ? 'text-rose-400' : 'text-slate-200'}`}>
+            <div className="bg-[#181818] p-1.5 rounded border border-[#262626]">
+              <div className="text-[9px] text-[#8E8E93] font-semibold uppercase font-mono-meta">Running Count</div>
+              <div className="text-sm font-bold font-mono-meta text-[#EDEDED]">
                 {counting.runningCount > 0 ? `+${counting.runningCount}` : counting.runningCount}
               </div>
             </div>
 
-            <div className="bg-slate-900/90 p-1.5 rounded-lg border border-amber-400/40">
-              <div className="text-[10px] text-amber-400 font-semibold uppercase">True Count</div>
-              <div className={`text-base font-bold font-mono ${counting.trueCount > 0 ? 'text-amber-300' : counting.trueCount < 0 ? 'text-rose-400' : 'text-slate-200'}`}>
+            <div className="bg-[#2A2210] p-1.5 rounded border border-[#4A3B18]">
+              <div className="text-[9px] text-[#FBBF24] font-semibold uppercase font-mono-meta">True Count</div>
+              <div className="text-sm font-bold font-mono-meta text-[#FBBF24]">
                 {counting.trueCount > 0 ? `+${counting.trueCount}` : counting.trueCount}
               </div>
             </div>
 
-            <div className="bg-slate-900/90 p-1.5 rounded-lg border border-slate-800">
-              <div className="text-[10px] text-slate-400 font-semibold uppercase">Decks Left</div>
-              <div className="text-base font-bold text-slate-100 font-mono">
-                {counting.decksRemaining} <span className="text-[10px] text-slate-400 font-normal">({counting.penetrationPct}%)</span>
+            <div className="bg-[#181818] p-1.5 rounded border border-[#262626]">
+              <div className="text-[9px] text-[#8E8E93] font-semibold uppercase font-mono-meta">Decks Left</div>
+              <div className="text-sm font-bold text-[#EDEDED] font-mono-meta">
+                {counting.decksRemaining} <span className="text-[9px] text-[#8E8E93] font-normal">({counting.penetrationPct}%)</span>
               </div>
             </div>
           </div>
 
           {/* Current Live Advice */}
           {currentAdvice && (
-            <div className="bg-amber-950/40 border border-amber-500/30 rounded-lg p-2 flex items-center justify-between text-xs text-amber-200">
-              <span className="text-[11px] text-amber-300 font-semibold uppercase tracking-wider">Strategy Advisor:</span>
-              <span className="font-medium text-right text-xs">{currentAdvice}</span>
+            <div className="bg-[#122416] border border-[#1E3A24] rounded p-2 flex items-center justify-between text-xs text-[#4ADE80]">
+              <span className="text-[10px] font-mono-meta font-bold uppercase tracking-wider">Advisor:</span>
+              <span className="font-medium text-right text-xs leading-tight">{currentAdvice}</span>
             </div>
           )}
         </motion.div>
@@ -79,25 +79,25 @@ export const TrainerHud: React.FC<TrainerHudProps> = ({
       <AnimatePresence>
         {lastFeedback && (
           <motion.div
-            initial={{ scale: 0.95, opacity: 0, y: -5 }}
-            animate={{ scale: 1, opacity: 1, y: 0 }}
-            exit={{ scale: 0.95, opacity: 0 }}
-            className={`p-2 rounded-lg text-xs flex items-center gap-2 border ${
+            initial={{ scale: 0.98, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            exit={{ scale: 0.98, opacity: 0 }}
+            className={`p-2 rounded text-xs flex items-center gap-2 border ${
               lastFeedback.isOptimal
-                ? 'bg-emerald-950/80 border-emerald-500/40 text-emerald-300'
-                : 'bg-rose-950/80 border-rose-500/40 text-rose-300'
+                ? 'bg-[#122416] border-[#1E3A24] text-[#4ADE80]'
+                : 'bg-[#2A1416] border-[#4D2024] text-[#F87171]'
             }`}
           >
             {lastFeedback.isOptimal ? (
-              <CheckCircle size={18} weight="fill" className="text-emerald-400 shrink-0" />
+              <CheckCircle size={16} weight="fill" className="shrink-0 text-[#4ADE80]" />
             ) : (
-              <WarningCircle size={18} weight="fill" className="text-rose-400 shrink-0" />
+              <WarningCircle size={16} weight="fill" className="shrink-0 text-[#F87171]" />
             )}
             <div className="leading-tight">
-              <span className="font-bold">
-                {lastFeedback.isOptimal ? 'Optimal Move!' : `Suboptimal (${lastFeedback.playerAction}):`}
+              <span className="font-bold font-mono-meta text-[11px]">
+                {lastFeedback.isOptimal ? 'Optimal Strategy:' : `Suboptimal (${lastFeedback.playerAction}):`}
               </span>{' '}
-              <span className="text-[11px] opacity-90">{lastFeedback.reason}</span>
+              <span className="text-[11px]">{lastFeedback.reason}</span>
             </div>
           </motion.div>
         )}

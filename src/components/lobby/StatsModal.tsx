@@ -14,7 +14,6 @@ export const StatsModal: React.FC = () => {
     bjBlackjacks,
     vpWins,
     vpLosses,
-    vpRoyalFlushes,
     trainerDecisionsTotal,
     trainerDecisionsCorrect,
     resetBankroll,
@@ -28,66 +27,62 @@ export const StatsModal: React.FC = () => {
       : 0;
 
   return (
-    <div className="space-y-4 text-slate-200">
+    <div className="space-y-4 text-[#EDEDED]">
       {/* Overview Grid */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
-        <div className="bg-slate-950/60 p-3 rounded-xl border border-slate-800 text-center">
-          <div className="text-[11px] text-slate-400 font-semibold uppercase tracking-wider">Current Chips</div>
-          <div className="text-lg font-bold text-amber-300 font-mono">${chips.toLocaleString()}</div>
+        <div className="bg-[#181818] p-3 rounded-lg border border-[#262626] text-center">
+          <div className="text-[10px] text-[#8E8E93] font-semibold uppercase font-mono-meta">Current Chips</div>
+          <div className="text-lg font-bold text-[#EDEDED] font-mono-meta">${chips.toLocaleString()}</div>
         </div>
-        <div className="bg-slate-950/60 p-3 rounded-xl border border-slate-800 text-center">
-          <div className="text-[11px] text-slate-400 font-semibold uppercase tracking-wider">Net Profit</div>
-          <div className={`text-lg font-bold font-mono ${netProfit >= 0 ? 'text-emerald-400' : 'text-rose-400'}`}>
+        <div className="bg-[#181818] p-3 rounded-lg border border-[#262626] text-center">
+          <div className="text-[10px] text-[#8E8E93] font-semibold uppercase font-mono-meta">Net Result</div>
+          <div className={`text-lg font-bold font-mono-meta ${netProfit >= 0 ? 'text-[#4ADE80]' : 'text-[#F87171]'}`}>
             {netProfit >= 0 ? `+$${netProfit.toLocaleString()}` : `-$${Math.abs(netProfit).toLocaleString()}`}
           </div>
         </div>
-        <div className="bg-slate-950/60 p-3 rounded-xl border border-slate-800 text-center">
-          <div className="text-[11px] text-slate-400 font-semibold uppercase tracking-wider">Hands Played</div>
-          <div className="text-lg font-bold text-slate-100 font-mono">{handsPlayed}</div>
+        <div className="bg-[#181818] p-3 rounded-lg border border-[#262626] text-center">
+          <div className="text-[10px] text-[#8E8E93] font-semibold uppercase font-mono-meta">Hands Played</div>
+          <div className="text-lg font-bold text-[#EDEDED] font-mono-meta">{handsPlayed}</div>
         </div>
-        <div className="bg-slate-950/60 p-3 rounded-xl border border-slate-800 text-center">
-          <div className="text-[11px] text-slate-400 font-semibold uppercase tracking-wider">Win Rate</div>
-          <div className="text-lg font-bold text-sky-400 font-mono">{winRate}%</div>
+        <div className="bg-[#181818] p-3 rounded-lg border border-[#262626] text-center">
+          <div className="text-[10px] text-[#8E8E93] font-semibold uppercase font-mono-meta">Win Rate</div>
+          <div className="text-lg font-bold text-[#60A5FA] font-mono-meta">{winRate}%</div>
         </div>
       </div>
 
       {/* Blackjack & Trainer Stats */}
-      <div className="bg-slate-950/60 p-3.5 rounded-xl border border-slate-800 space-y-2">
+      <div className="bg-[#181818] p-3.5 rounded-lg border border-[#262626] space-y-2">
         <div className="flex items-center justify-between">
-          <span className="font-serif-luxury font-bold text-sm text-amber-300">Blackjack Performance</span>
-          <span className="text-xs text-slate-400">{bjWins}W - {bjLosses}L - {bjPushes}P</span>
+          <span className="font-serif-editorial font-bold text-sm text-[#EDEDED]">Blackjack 3-Deck Continuous</span>
+          <span className="text-xs font-mono-meta text-[#8E8E93]">{bjWins}W / {bjLosses}L / {bjPushes}P</span>
         </div>
         <div className="grid grid-cols-2 gap-2 text-xs">
-          <div className="flex justify-between bg-slate-900/60 p-2 rounded border border-slate-800/60">
-            <span className="text-slate-400">Natural Blackjacks:</span>
-            <span className="font-bold text-amber-400 font-mono">{bjBlackjacks}</span>
+          <div className="flex justify-between bg-[#121212] p-2 rounded border border-[#222222]">
+            <span className="text-[#8E8E93]">Natural Blackjacks:</span>
+            <span className="font-bold text-[#EDEDED] font-mono-meta">{bjBlackjacks}</span>
           </div>
-          <div className="flex justify-between bg-slate-900/60 p-2 rounded border border-slate-800/60">
-            <span className="text-slate-400">Strategy Accuracy:</span>
-            <span className={`font-bold font-mono ${trainerAccuracy >= 85 ? 'text-emerald-400' : 'text-amber-400'}`}>
+          <div className="flex justify-between bg-[#121212] p-2 rounded border border-[#222222]">
+            <span className="text-[#8E8E93]">Counting Accuracy:</span>
+            <span className="font-bold font-mono-meta text-[#4ADE80]">
               {trainerAccuracy}% ({trainerDecisionsCorrect}/{trainerDecisionsTotal})
             </span>
           </div>
         </div>
       </div>
 
-      {/* Video Poker Stats */}
-      <div className="bg-slate-950/60 p-3.5 rounded-xl border border-slate-800 space-y-2">
+      {/* Poker Stats */}
+      <div className="bg-[#181818] p-3.5 rounded-lg border border-[#262626] space-y-2">
         <div className="flex items-center justify-between">
-          <span className="font-serif-luxury font-bold text-sm text-amber-300">Video Poker</span>
-          <span className="text-xs text-slate-400">{vpWins} Wins / {vpLosses} Losses</span>
-        </div>
-        <div className="flex justify-between bg-slate-900/60 p-2 rounded border border-slate-800/60 text-xs">
-          <span className="text-slate-400">Royal Flushes Hit:</span>
-          <span className="font-bold text-amber-400 font-mono">{vpRoyalFlushes} 👑</span>
+          <span className="font-serif-editorial font-bold text-sm text-[#EDEDED]">Texas Hold'em Poker</span>
+          <span className="text-xs font-mono-meta text-[#8E8E93]">{vpWins} Won / {vpLosses} Lost</span>
         </div>
       </div>
 
       {/* Bankroll Reload */}
-      <div className="pt-2 flex items-center justify-between border-t border-slate-800">
-        <span className="text-xs text-slate-400">Broke? Reset to $500 chips</span>
+      <div className="pt-2 flex items-center justify-between border-t border-[#262626]">
+        <span className="text-xs text-[#8E8E93]">Reset balance to default</span>
         <Button variant="secondary" size="sm" onClick={resetBankroll}>
-          Reset Chips to $500
+          Reset Chips ($500)
         </Button>
       </div>
     </div>
