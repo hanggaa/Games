@@ -1,8 +1,8 @@
-# AGENTS.md — Master Plan for Hanggaa Card & Casino Arcade
+# AGENTS.md — Master Plan for Hanggaa Arcade Suite
 
 ## Project Overview & Stack
-**App:** Hanggaa Card & Casino Arcade (`hanggaa-games`)  
-**Overview:** Zero-friction, ad-free, solo arcade hub with a **Dark Premium Utilitarian Minimalist & Editorial UI** (`minimalist-ui`). Features 12-Gauge Buckshot Roulette, Balatro-lite Roguelike Poker Deckbuilder, 3-Deck Continuous Shoe Blackjack (with Hi-Lo Card Counting Trainer), and Texas Hold'em Poker (vs AI Bots) with persistent shared bankroll in `localStorage`.  
+**App:** Hanggaa Solo Arcade & Strategy Suite (`hanggaa-games`)  
+**Overview:** Zero-friction, ad-free, solo arcade hub with a **Dark Premium Utilitarian Minimalist & Editorial UI** (`minimalist-ui`). Features 8 rich games spanning strategy, roguelikes, gravity physics, cyber terminals, and tabletop showdowns with shared virtual credits/bankroll in `localStorage`.  
 **Stack:** React 19, TypeScript, Vite, Tailwind CSS v4, Motion (`motion/react`), Zustand, Web Audio API, GitHub Pages (`games.hanggaa.xyz`).  
 **Critical Constraints:** 100% Free ($0 hosting & backend), Mobile-First Portrait mode (`min-h-[100dvh]`), Strict TypeScript (no `any`), Dark Minimalist Editorial Aesthetic (`#0A0A0A` canvas, 1px `#242424` borders, Newsreader serif typography, dark spot pastels, zero emoji text, zero heavy drop-shadows).
 
@@ -19,14 +19,20 @@
 
 ## Current State 📍
 **Last Updated:** 2026-09-01  
-**Working On:** Buckshot Roulette 12-Gauge Tabletop Mode Implemented & Verified.  
-**Recently Completed:** Buckshot Roulette vs The Dealer, Dark Minimalist Bento Hub, Balatro-lite Deckbuilder & Joker Shop, 3-Deck Shoe Blackjack, Texas Hold'em vs Bots.  
+**Working On:** 8-Game Portrait Suite Complete, Tested, & Verified.  
+**Recently Completed:**
+1. ⚔️ Dungeon Crawl (Turn-Based Micro Roguelike)
+2. 🛡️ Core Defense (Vertical Micro Tower Defense)
+3. 💻 Cyber Infiltration (Minimalist Terminal Hacker)
+4. 🚀 Lunar Orbital (Slingshot Gravity Physics)
+5. 💥 Buckshot Roulette (12-Gauge Tabletop Duel vs The Dealer)
+6. 🃏 Balatro-lite (Roguelike Poker Deckbuilder)
+7. 🧠 3-Deck Continuous Shoe Blackjack (Card Counting Trainer)
+8. ♠️ Texas Hold'em Poker (vs AI Bots)
 **Blocked By:** None
 
 ## Roadmap 🗺️
 - [x] Dark Minimalist Warm Monochrome Design System (`minimalist-ui`)
-- [x] Buckshot Roulette 12-Gauge Tabletop vs The Dealer (Live vs Blank shells, tactical item inventory, defibrillator charges, 3 rounds, $1,000 prize)
-- [x] Balatro-lite Roguelike Poker Deckbuilder (Ante 1-8, Escalating Blinds, Discards/Hands, Synergistic Jokers & Shop)
-- [x] 3-Deck Physical Continuous Shoe Blackjack + Hi-Lo Card Counting Trainer
-- [x] Texas Hold'em vs AI Bots (Elena & Viktor) with 7-Card Hand Evaluator
+- [x] Non-Casino Strategy & Arcade Suite (Dungeon Crawl, Core Defense, Cyber Infiltration, Lunar Orbital)
+- [x] Tabletop & Card Suite (Buckshot Roulette, Balatro-lite, 3-Deck Shoe Blackjack, Texas Hold'em vs Bots)
 - [x] REVIEW-CHECKLIST.md Quality & Security Verification

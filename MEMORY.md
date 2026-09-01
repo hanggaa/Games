@@ -1,17 +1,18 @@
 # System Memory & Context 🧠
 
 ## 🏗️ Active Phase & Goal
-**Current Task:** Implemented **Buckshot Roulette (12-Gauge Tabletop Duel vs The Dealer)** with procedural Web Audio synthesis, tactical item inventory, and mobile portrait ergonomics.
+**Current Task:** Full 8-Game Solo Arcade & Strategy Suite built, verified, and bundled with zero TypeScript errors or security warnings.
 **Next Steps:**
 1. Test in browser using `npm run dev`.
 2. Deploy to GitHub Pages using `npm run deploy` to publish to `games.hanggaa.xyz`.
 
 ## 📂 Architectural Decisions
-- 2026-09-01 — **Buckshot Roulette Mode**: Built 1v1 shotgun roulette with randomized live/blank shell loads, tactical item shelf (Magnifier, Handsaw, Cigarette, Beer, Handcuffs, Inverter, Burner Phone), intelligent dealer AI, 3-round defibrillator escalation, screen shake physics, and procedural Web Audio blasts.
-- 2026-09-01 — **Dark Minimalist Editorial UI**: Transformed palette to Matte Charcoal/Graphite (`#0A0A0A`), crisp dark surface containers (`#141414`) with 1px `#242424` hairline borders, Off-white typography (`#EDEDED`), Newsreader editorial serif headings, Geist Mono metadata.
-- 2026-09-01 — **Balatro-lite Roguelike Deckbuilder**: Ante progression (1 to 8), Target Blinds, 8-card hands, 5-card scoring formula, 4 Hands / 3 Discards, and a Shop phase with customizable Jokers.
-- 2026-09-01 — **3-Deck Continuous Shoe Blackjack**: 156-card shoe with persistent Running Count & True Count across rounds, cut card auto-reshuffle.
-- 2026-09-01 — **Texas Hold'em vs Bots**: Solitary poker table against Bot Elena & Bot Viktor with 7-card showdown evaluator.
+- 2026-09-01 — **Dungeon Crawl**: Turn-based 3x3 path crawler with Hero classes (Knight, Rogue, Mage), dynamic floor enemy scaling, equipment upgrades, and boss encounters.
+- 2026-09-01 — **Core Defense**: Real-time vertical tower defense with 4 turret types (Pulse, Cryo, Chain Arc, Mortar), 3x4 placement matrix, and scrap upgrades.
+- 2026-09-01 — **Cyber Infiltration**: Terminal matrix buffer decryption, alternating row/column constraint routing, ICE Breakers, and Proxy Hops.
+- 2026-09-01 — **Lunar Orbital**: Gravitational slingshot puzzle with inverse-square celestial physics, trajectory dotted guides, and warp gates at 60 FPS.
+- 2026-09-01 — **Tabletop Suite**: Buckshot Roulette (12-Gauge vs Dealer), Balatro-lite, 3-Deck Shoe Blackjack Trainer, and Texas Hold'em vs Bots.
+- 2026-09-01 — **Dark Minimalist Editorial UI**: Matte Charcoal (`#0A0A0A`), 1px `#242424` hairline borders, Newsreader serif headings, Geist Mono metadata.
 
 ## 🐛 Known Issues & Quirks
-- None. `npm run build` passes cleanly (1.79s) with 0 vulnerabilities in `npm audit`.
+- None. `npm run build` passes cleanly (2.31s) with 0 vulnerabilities in `npm audit`.

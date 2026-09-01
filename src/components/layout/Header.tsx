@@ -5,7 +5,17 @@ import { useSettingsStore } from '../../store/useSettingsStore';
 import { Modal } from '../common/Modal';
 import { StatsModal } from '../lobby/StatsModal';
 
-export type ExtendedView = 'lobby' | 'blackjack' | 'blackjack-pro' | 'videopoker' | 'balatro' | 'buckshot';
+export type ExtendedView =
+  | 'lobby'
+  | 'dungeon'
+  | 'defense'
+  | 'cyber'
+  | 'orbital'
+  | 'buckshot'
+  | 'balatro'
+  | 'blackjack-pro'
+  | 'videopoker'
+  | 'blackjack';
 
 interface HeaderProps {
   activeView: ExtendedView;
@@ -28,7 +38,7 @@ export const Header: React.FC<HeaderProps> = ({ activeView, onNavigate }) => {
               className="flex items-center gap-1.5 text-xs font-medium text-[#EDEDED] bg-[#141414] hover:bg-[#1C1C1C] px-2.5 py-1.5 rounded-md border border-[#2A2A2A] transition active:scale-[0.98] cursor-pointer"
             >
               <ArrowLeft size={14} weight="bold" />
-              <span>Lobby</span>
+              <span>Hub</span>
             </button>
           ) : (
             <div className="flex items-center gap-2">
@@ -44,14 +54,14 @@ export const Header: React.FC<HeaderProps> = ({ activeView, onNavigate }) => {
 
         {/* Center: Bankroll Counter */}
         <div className="flex items-center gap-2 bg-[#141414] border border-[#282828] px-3 py-1 rounded-md text-xs font-mono-meta">
-          <span className="text-[#8E8E93]">BANKROLL</span>
+          <span className="text-[#8E8E93]">CREDITS</span>
           <span className="font-bold text-[#EDEDED]">
             ${chips.toLocaleString()}
           </span>
           {chips <= 0 && (
             <button
               onClick={resetBankroll}
-              title="Reset $500 chips"
+              title="Reset $500 credits"
               className="text-[#FBBF24] hover:text-white transition active:scale-95 ml-1 cursor-pointer"
             >
               <ArrowClockwise size={13} weight="bold" />
